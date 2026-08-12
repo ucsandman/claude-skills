@@ -1,0 +1,42 @@
+# ---------------------------------------------------------------------------
+# Third-party skills installed into this directory.
+#
+# These live here so Claude Code can load them, but they are other people's
+# work under their own licenses and are NOT redistributed by this repo. They
+# are installed from their upstreams (see README "Third-party skills"), most
+# of them as symlinks into ~/.agents/skills/.
+# ---------------------------------------------------------------------------
+agent-browser/
+claude-api/
+inversion/
+lateral/
+polish/
+six-hats/
+
+# Anthropic's plugin marketplace manifest, left over from when this directory
+# was a clone of anthropics/skills. Theirs, not mine.
+.claude-plugin/
+
+# ---------------------------------------------------------------------------
+# Local scratch and tool state — never publish.
+# ---------------------------------------------------------------------------
+
+# de-vibe eval scratch: nested git fixtures (which would push as broken
+# gitlinks) plus a deliberately fake .env used as detection bait.
+de-vibe-workspace/
+
+# launch skill scratch output.
+launch-workspace/
+
+# Local state written by MCP tooling.
+.dashclaw-local/
+.offlocal/
+
+# ---------------------------------------------------------------------------
+# Secrets — belt and braces. Nothing in this repo should ever need them.
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
