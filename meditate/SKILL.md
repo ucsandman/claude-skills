@@ -37,9 +37,17 @@ promoting anything.
 1. **Ground.** Read `meditations/MEDITATIONS.md`, `meditations/CANDIDATES.md`,
    the memory index at `projects/*/memory/MEMORY.md`, and
    the last 24h of activity:
-   `git -C ~/.claude log --oneline --since=24.hours`, plus the same
+   `git -C C:/Users/sandm/.claude log --oneline --since=24.hours`, plus the same
    for any repo under `C:\Projects\` modified in the last day (find them via
    `ls -t C:/Projects` and check the top few).
+
+   **`git -C` needs a native Windows path.** `git -C ~/.claude` and
+   `git -C /c/Projects/X` both die with `fatal: cannot change to ...` — git.exe
+   cannot read MSYS paths. Use `C:/Projects/X`, or `(cd /c/Projects/X && git ...)`.
+   **Never add `2>/dev/null` to a grounding command.** On 2026-08-13 this exact
+   pair — POSIX path plus suppressed stderr — reported "0 commits in 24h" across
+   six repos that had 27. A grounding step that cannot fail loudly will ground you
+   in nothing.
 2. **Pick 2 topics** from the Rotation table — the two oldest `last visited`
    (break ties by table order). Update their `Last visited` to today.
 3. **Reflect.** For each picked topic: read its file (if >500 lines, the head
