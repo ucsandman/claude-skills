@@ -208,6 +208,21 @@ Lead with 1. Only reach for mass drags after the user has been told the cost.
 | Error wall containing `FBSOpenApplication... Locked` | The phone is locked. Make `unlock` step 1 of the batch. |
 | A bottom-edge swipe does nothing | **Look for a keyboard first.** It owns the bottom ~40% of the screen, so a system edge gesture started at y≈950 begins *inside the keyboard* and is swallowed. Longer and slower does not help — the start point is wrong, not the shape. |
 | Stuck in Spotlight after a search | `press_home()` does **not** leave it (`/wda/homescreen` only exits real apps), and every bottom-edge gesture fails for the keyboard reason above. Tap the **empty blurred area** between the results and the search bar (mid-screen, ~y=477 on a 956pt screen) — one tap and you are on the springboard. Five gestures failed here before anyone took a screenshot. |
+| Typing a `- ` list into Notes | iOS converts the first `- ` into a native bullet list, so every later literal dash renders doubled. Skip the leading dashes or accept the cosmetics. |
+
+## Building a shortcut in the Shortcuts app
+
+Verified 2026-08-13, building a 6-action shortcut end to end by tap (weather +
+calendar + battery → Text with variable chips → Speak → Show) and running it.
+
+| Trap | Reality |
+|---|---|
+| Typing right after inserting a variable chip | **Chip insertion can silently drop keyboard focus**, and `type_text()` into nothing still reports ok — two lines went into the void with no error. The full `Select Variable` picker always defocused; the keyboard quick-bar chips defocused once and kept focus once, so neither is safe to chain blind. After every insert, re-read the field; re-focus by tapping past the end of the last line before typing on. Cycle: focus → type → chip → verify. |
+| Verifying the Text action's contents | Exception to the placeholder rule above: **the Text-action `TextView` exposes its real contents to `ocr()`**, chips included — each chip reads as `￼` (U+FFFC). Count the `￼`s to verify chip placement without paying for a screenshot. |
+| Waiting for the run-result sheet | **The result sheet (`Cancel`/`Done`) is invisible to the accessibility tree.** `wait_for_text("Done")` timed out while the sheet was plainly on screen, and the toolbar still read `Stop` — so a "stuck" run may be a finished run. `screenshot()` is the only way to see it, and the only source for its tap coordinates (pixels ÷ scale). |
+| Editing a parameter token inside an action row (`1 event`) | The whole row is ONE `Other` element in compacted `ocr()`; the tokens carry no coordinates and a guessed tap lands on nothing. Screenshot for geometry, tap the token, and a popup `Stepper` appears with `Increment`/`Decrement` buttons. Dismiss by tapping empty space below it. |
+| Searching actions by remembered name | Same name drift as everywhere: "Show Result" is **`Show Content`**; searching "battery level" returns **`Get Battery Status`**, which then renders in the editor as `Get Battery Level`. Search a substring, read what comes back. |
+| Hand-wiring inputs between actions | Don't. Auto-wire got everything right: Speak and Show both picked up the Text variable on their own, skipping the no-output action between them. Verify the wiring with one screenshot at the end instead of plumbing it by hand. |
 
 ## What the harness cannot do
 
