@@ -38,6 +38,23 @@ Exits non-zero if any candidate was rejected. Backs up to `.env.bak` before writ
 Step 5 is the point. `offlocal doctor` reports a credential as "set" when the value is
 literally `twilio_placeholder`; only a real request tells you it is junk.
 
+## What a probe cannot tell you
+
+A probe proves the key **works**. It cannot prove the key is **this product's**. A shared
+credential store holds one `CLERK_SECRET_KEY`, one `STRIPE_SECRET_KEY`, one
+`RESEND_API_KEY` — and they belong to whichever product got there first. In 2026-08 that
+wired seentoit to callclaw's Clerk instance: valid key, HTTP 200, wrong tenant. Nobody
+noticed until the hosted sign-in page rendered "Sign in to callclaw".
+
+So for any credential that identifies a tenant rather than an account, check the identity
+the provider reports back, not just the status code:
+
+- Clerk: load the sign-in page, or `GET /v1/instance` — whose application is it?
+- Stripe: `GET /v1/account` — which business name?
+- Twilio: `GET /Accounts/{sid}.json` — which `friendly_name`?
+
+Say which product a key belongs to in the report. "Valid" on its own is not the answer.
+
 ## Reporting back
 
 Give the user the table, then the gaps split into two lists:
