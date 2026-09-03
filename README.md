@@ -60,6 +60,7 @@ To scope a skill to one project instead of your whole machine, put it in
 | `blindspot` | Surfaces what you are missing before you touch unfamiliar or high-stakes code. |
 | `adversarial-review` | Parallel review agents find issues, then a skeptic that defaults to REFUTED tries to kill each finding. Only survivors are reported. |
 | `de-vibe` | Finds and fixes the tells that software was AI-generated, then gives it a small distinctive identity. |
+| `show-me` | Explains the current topic visually: pseudocode, call trees, file trees, Mermaid, diffs, or one focused HTML page. From humanlayer/skills, MIT. |
 | `frontend-verify` | Drives the app after a UI change. Reads console and network errors first, writes full page state to disk, and only pulls a screenshot into context when a route actually fails. |
 
 ### Shipping
