@@ -80,8 +80,8 @@ Render EVERY draft (all platforms + the email HTML + SMS text) to the user in on
 
 ### 10. Distribute [CLI + session]
 
-1. **[CLI]** `launch post <dir> --all --live` — posts X, Bluesky, Facebook, LinkedIn, YouTube, Reddit via API; submits sitemap + URL inspection to Google; skips blocked providers with a summary; the posted-ledger makes re-runs idempotent.
-   **[session]** The CLI covers Google only. Before this step the Search Console property must already be verified, and after it Bing Webmaster Tools gets the site imported from Search Console (Wes signs in; hand him the one line) and the host's analytics is enabled with its tag live. Procedure: `~/.claude/skills/preflight/references/search-registration.md`.
+1. **[CLI]** `launch post <dir> --all --live` — posts X, Bluesky, Facebook, LinkedIn, YouTube, Reddit via API; submits sitemap + URL inspection to Google and sitemap + URL submission to Bing; skips blocked providers with a summary; the posted-ledger makes re-runs idempotent.
+   **[session]** The CLI submits to Google AND Bing when their keys are present; only a missing key is handed to Wes (`creds mint bing` prints the click path — one key per Bing account, generated once). Before this step the Search Console property must already be verified, and after it the host's analytics is enabled with its tag live. Procedure: `~/.claude/skills/preflight/references/search-registration.md`.
 2. **[CLI]** Assisted platforms at their recommended times (from the briefs):
    - `launch post <dir> --platform hackernews --assist --live` — opens the prefilled Show HN submitlink, copies the maker comment. The HUMAN clicks submit.
    - `launch post <dir> --platform producthunt --assist --live` — writes `.launch/out/producthunt-kit.md`, opens the submit page, copies the tagline. Schedule per the kit (12:01 AM PT, low-competition day).

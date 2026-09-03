@@ -33,13 +33,23 @@ Checklist, in order:
 
 ## 2. Bing Webmaster Tools
 
-- Open https://www.bing.com/webmasters. It always starts at a sign-in wall; the agent
-  cannot sign in. Hand Wes: "bing.com/webmasters, sign in, Import from Google Search
-  Console, pick the property." He did this for declick.dev in about two minutes.
+- The launch CLI submits to Google **and** Bing when their keys are present:
+  `launch post <dir> --platform bing --live` adds the site, verifies it, submits
+  `sitemap.xml` and the home URL, and reports the remaining URL submission quota.
+  `launch doctor` shows the provider as `api` once the key is in `.env`.
+- Only a missing key is handed to Wes. `creds mint bing` prints the click path:
+  bing.com/webmasters, sign in, Settings (gear, top right), API Access, API Key,
+  Generate. One key per **account**, generated once, covers every site — so this is a
+  one-time step, not a per-launch one. It lands in `.env` as `BING_WEBMASTER_API_KEY`.
+- Verification is a meta tag: `<meta name="msvalidate.01" content="<code>">` in the home
+  page head. The code is account-wide too, so the same tag verifies every site. Put it in
+  `.env` as `BING_VERIFICATION_CODE` and the CLI verifies the site itself; without it the
+  CLI stops before submitting and prints the exact tag to add.
 - Bing feeds Copilot, DuckDuckGo and ChatGPT search, so this is not optional for a
   product aimed at engineers.
-- Once signed in, Bing has a Submit Sitemaps page and a URL submission quota; the import
-  brings the sitemap across automatically.
+- **Fallback, when the key is not yet minted:** hand Wes "bing.com/webmasters, sign in,
+  Import from Google Search Console, pick the property." He did this for declick.dev in
+  about two minutes; the import brings the sitemap across automatically.
 
 ## 3. Analytics
 
@@ -67,7 +77,9 @@ Checklist, in order:
 In the preflight report the line is:
 
 ```
-[PASS|FAIL] search   gsc=<verified|MISSING> sitemap=<submitted|MISSING> bing=<imported|PENDING WES> analytics=<vercel|posthog|MISSING>
+[PASS|FAIL] search   gsc=<verified|MISSING> sitemap=<submitted|MISSING> bing=<submitted|imported|PENDING WES> analytics=<vercel|posthog|MISSING>
 ```
 
-A PENDING WES on Bing is not a FAIL; it is a one-line handoff in the report.
+`bing=submitted` is the CLI path (`launch post --platform bing --live`). A PENDING WES on
+Bing is not a FAIL; it is a one-line handoff in the report — and now it means only
+`creds mint bing`, a one-time account-wide key, not a per-launch manual import.
