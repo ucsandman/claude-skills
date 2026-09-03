@@ -1,6 +1,6 @@
 ---
 name: meditate
-description: Nightly/weekly reflection loop for Claude Code — append dated entries to rotating reflection topics, promote durable insights up the ladder (memory → CLAUDE.md → SOUL.md), build one real artifact at the workbench, render an HTML digest. Use when invoked as /meditate (modes: nightly, weekly, or no-arg manual run), or when Wes asks for a meditation/reflection session.
+description: Nightly/weekly reflection loop for Claude Code - dated entries, promotes insights, builds a workbench artifact. Use as /meditate.
 ---
 
 # Meditate
@@ -41,6 +41,16 @@ promoting anything.
    for any repo under `C:\Projects\` modified in the last day (find them via
    `ls -t C:/Projects` and check the top few).
 
+   **Read the error log before reflecting: `C:/Users/sandm/.claude/error-log/claude.jsonl`**
+   (harvested at 6:22am by the `ClaudeErrorLog` task, one record per deviation I
+   wrote in a summary, plus every correction from Wes). Filter to yesterday's
+   `day` for the nightly pass. This is the only grounding input made of things I
+   got *wrong* — commits record what I shipped, this records where I was
+   mistaken, and a reflection built only on commits will always read as progress.
+   Keyword buckets there catch about a third; the recurring pattern in the
+   unclassified prose is yours to name, and a pattern named on 3+ separate days
+   is a `CANDIDATES.md` sighting.
+
    **`git -C` needs a native Windows path.** `git -C ~/.claude` and
    `git -C /c/Projects/X` both die with `fatal: cannot change to ...` — git.exe
    cannot read MSYS paths. Use `C:/Projects/X`, or `(cd /c/Projects/X && git ...)`.
@@ -48,6 +58,13 @@ promoting anything.
    pair — POSIX path plus suppressed stderr — reported "0 commits in 24h" across
    six repos that had 27. A grounding step that cannot fail loudly will ground you
    in nothing.
+   **Check memory provenance: `node C:/Users/sandm/.claude/tools/memstale/memstale.cjs --mark`.**
+   Every path a memory names is checked against the disk; a memory naming a
+   missing path gets a `stale-since:` frontmatter line (cleared when the path
+   returns, never deleted). Read the summary counts, not just the verdict. A
+   memory stale for 30+ days whose subject you can confirm gone is a ledger
+   sighting for "memory outlived its referent", and its body gets one dated
+   line saying what replaced it.
 2. **Pick 2 topics** from the Rotation table — the two oldest `last visited`
    (break ties by table order). Update their `Last visited` to today.
 3. **Reflect.** For each picked topic: read its file (if >500 lines, the head
