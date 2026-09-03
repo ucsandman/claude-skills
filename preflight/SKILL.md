@@ -25,7 +25,7 @@ Two rules that override everything below:
 
 - Required var names come from `.env.example`. If it is missing or stale, grep `process.env.` / `import.meta.env.` and report the drift — that is itself a finding.
 - Check presence of each name on the deploy platform via offlocal (`get_project_context`, provider env getters). Names only.
-- Stripe, when the product charges: mode must be **live** for launch (`get_project_context` shows it); `list_stripe_products` + prices match the pricing page; `list_stripe_webhooks` has an enabled endpoint on the production domain. Grep the repo for hardcoded `price_`/`prod_` IDs that point at test mode.
+- Stripe, when the product charges: mode must be **live** for launch (`get_project_context` shows it); `list_stripe_products` + prices match the pricing page; `list_stripe_webhooks` has an enabled endpoint on the production domain. Grep the repo for hardcoded `price_`/`prod_` IDs that point at test mode. The Stripe account is shared across products, so a purchase here fires every other product's `checkout.session.completed` endpoint on the account: list the endpoints and confirm each one's handler guards by its own price ids (2026-09-03: the first live Off Localhost sale minted a declick license and a CallClaw client row).
 
 ## 2. Design pass (bounded)
 
