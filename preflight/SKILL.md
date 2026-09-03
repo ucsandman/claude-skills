@@ -1,6 +1,6 @@
 ---
 name: preflight
-description: Use when a product is about to go public and needs its final pre-launch pass — the user says "final pass", "preflight", "launch check", "is this ready to go live", or is sweeping several repos before a launch day. Run from the product's repo, one run per repo.
+description: Use before a product goes public for its final pass - "final pass", "preflight", "launch check", "is this ready to go live".
 user-invocable: true
 argument-hint: "[optional focus: env | design | verify]"
 ---
@@ -37,6 +37,8 @@ Two rules that override everything below:
 - Invoke `frontend-verify` over `/`, the pricing page, and every route the design pass touched.
 - Build gates from `package.json`: install, lint, typecheck, test, build — read the output.
 - Live check: fetch the production URL. HTTPS, real title, OG meta, favicon.
+- SEO floor: `/sitemap.xml`, `/robots.txt` (with a Sitemap line, disallowing dashboard/api/thanks), `/llms.txt` all return 200 with real content; every indexable page has its own title + meta description; noindex pages carry `robots: { index: false }`. Missing any of these is a FAIL on the `verify` line, and a code fix, not an infra one.
+- Search registration: Google Search Console property verified with the sitemap submitted and the home URL inspected, Bing Webmaster Tools imported from Search Console, the host's analytics enabled with its tag live on every page. Do it in this pass through the browser tools, following `references/search-registration.md`; only the Bing sign-in is handed to Wes. Reported on its own `search` line below.
 
 ## 4. Report (exact shape, then stop)
 
@@ -47,6 +49,7 @@ PREFLIGHT: <repo> — <date>
 [PASS|FAIL] design   impeccable: <n> fixed, <n> flagged; polish done
 [PASS|FAIL] verify   frontend-verify: <n>/<n> routes pass
 [PASS|FAIL] build    lint/typecheck/test/build output read
+[PASS|FAIL] search   gsc=<verified|MISSING> sitemap=<submitted|MISSING> bing=<imported|PENDING WES> analytics=<vercel|posthog|MISSING>
 VERDICT: LAUNCH READY | BLOCKED: <one line per blocker>
 NEEDS GO-AHEAD (batched): <infra fixes with exact action + rollback | none>
 ```

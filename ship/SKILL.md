@@ -1,6 +1,6 @@
 ---
 name: ship
-description: Use when finished work needs to go out — the user says "ship it", "update docs commit and push", "commit and push", or asks "anything else we need to update?" before a release or at the end of a work session.
+description: Use when finished work needs to go out - "ship it", "commit and push", or "anything else we need to update?" before a release.
 ---
 
 # Ship
@@ -15,7 +15,7 @@ Every ship is the same ritual: verify → docs → marketing site → sync surfa
 2. **Verify.** Run the repo's test/lint/build (discover from package.json / pyproject / CI config). Read the output. Failures block the ship — fix first, don't push red.
 3. **Docs.** Update every doc the change touches, in this commit and not a later sweep: README run steps, changelog, and internal docs (`docs/`, ADRs, runbooks, architecture notes, the repo's own `CLAUDE.md` if a convention changed). New env vars → `.env.example` + docs. New scripts and APIs get request/response examples.
 4. **Marketing site.** If a public surface exists — a `site/`, `web/`, `www/`, or `landing/` dir here, a separate site repo, or a URL in the README — open the pages this change affects and fix drift: feature lists, screenshots, pricing, version numbers, docs pages, changelog/release page. Rendered proof, not a grep. Say "no public site" out loud when there isn't one; never leave it unstated.
-5. **Sync other surfaces.** Anything else this repo publishes beyond the code: SDK/CLI version references, skills/plugins/MCP manifests, generated docs, dashboards, package registry metadata. List each surface as checked or n/a.
+5. **Sync other surfaces.** Anything else this repo publishes beyond the code: SDK/CLI version references, skills/plugins/MCP manifests, generated docs, dashboards, package registry metadata. List each surface as checked or n/a. A public surface that is new this ship, or a domain that changed, also gets registered before the report: Google Search Console verified + sitemap submitted, Bing Webmaster Tools imported from Search Console, host analytics enabled with its tag live. Follow `~/.claude/skills/preflight/references/search-registration.md`; the Bing sign-in is the one step handed to Wes.
 6. **Knowledge capture.** Write down what this session learned, before it evaporates:
    - Durable architecture/product/stack decision → `docs/DECISIONS.md`.
    - Failure or lesson → `docs/ERRORS.md`. Full entry (symptom, root cause, fix, date) when debugging took multiple attempts; one line every time you broke something or Wes corrected you, even if the fix was instant. First occurrences must be logged or repeats are never countable.
