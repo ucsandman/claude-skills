@@ -1,11 +1,7 @@
 ---
 name: dashclaw-governance
 description: >
-  Governance behavior for AI agents governed by DashClaw. Teaches the governance
-  protocol: when to call guard (risk thresholds), how to interpret decisions
-  (allow/warn/block/require_approval), when to record actions, how to wait for
-  approvals, and session lifecycle management. Loads org-specific policies and
-  capabilities from MCP resources at session start. Use with @dashclaw/mcp-server.
+  Governance protocol for agents governed by DashClaw (guard, record, approvals, session lifecycle).
   Trigger on: governed agent, dashclaw governance, guard policy, approval wait,
   governed capability, risk threshold, action recording, session lifecycle.
 ---

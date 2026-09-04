@@ -1,11 +1,11 @@
 ---
 name: product-demo
-description: Use when the user wants a product demo video / screen recording with zooms and cursor / dashboard walkthrough clip for any product (e.g. "/product-demo", "record a demo of the app", "Screen-Studio style demo").
+description: Use when the user wants a product demo video with zooms and cursor - e.g. "/product-demo", "Screen-Studio style demo".
 ---
 
 # Product Demo
 
-**REQUIRED BACKGROUND:** marketing-studio skill. Work in `C:\Projects\animations`.
+**REQUIRED BACKGROUND:** marketing-studio skill. Work in `C:/Projects/animations`.
 
 Produces: `out/<brand>/demo.mp4` — real app footage with synthetic smooth cursor,
 focus-driven camera zooms, and step captions, plus a brand end card.

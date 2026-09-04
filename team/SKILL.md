@@ -1,6 +1,6 @@
 ---
 name: team
-description: Fan a task out to the Claude Code + OpenClaw (MoltFire) team. Use when the user types /team <task> or asks to "have both agents" / "the team" handle something. Classifies who leads, delegates over CLI, logs every exchange to the team ledger, reports back here.
+description: Fan a task out to the Claude Code + OpenClaw (MoltFire) team. Use for /team <task> or "have both agents" handle something.
 ---
 
 # /team — two-agent task execution

@@ -1,12 +1,12 @@
 ---
 name: logo-reveal
-description: Use when the user wants a logo reveal / logo animation / brand intro video for any product (e.g. "/logo-reveal", "make a logo reveal for DashClaw", "animated logo for the landing page").
+description: Use when the user wants a logo reveal / brand intro video for any product - e.g. "/logo-reveal" for DashClaw.
 ---
 
 # Logo Reveal
 
 **REQUIRED BACKGROUND:** marketing-studio skill (engine location, brand onboarding,
-PLAYBOOK gotchas). Work happens in `C:\Projects\animations`.
+PLAYBOOK gotchas). Work happens in `C:/Projects/animations`.
 
 Produces: `out/<brand>/logo-reveal.mp4` — 3s Blender 3D draw-on of the brand mark
 composited in Remotion over the brand backdrop with wordmark + CTA (5s total).

@@ -1,11 +1,11 @@
 ---
 name: og-assets
-description: Use when the user wants OG images, link-preview assets, animated OG loops, README GIFs, or social-card exports for any product (e.g. "/og-assets", "make an OG image and README gif").
+description: Use when the user wants OG images, link-preview assets, or README GIFs for any product - e.g. "/og-assets".
 ---
 
 # OG Assets
 
-**REQUIRED BACKGROUND:** marketing-studio skill. Work in `C:\Projects\animations`.
+**REQUIRED BACKGROUND:** marketing-studio skill. Work in `C:/Projects/animations`.
 
 Produces: `out/<brand>/og.mp4` (8s seamless 1200x630 loop), `og.gif`, `readme.gif`
 (600x315), optionally backed by a ComfyUI AI hero texture.

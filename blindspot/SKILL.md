@@ -1,6 +1,6 @@
 ---
 name: blindspot
-description: Use before modifying unfamiliar or high-stakes code — when the user invokes /blindspot, inherits a module or codebase, asks "what am I missing?", or is about to change auth, billing, data migration, or concurrency code they didn't write. Not for routine changes in well-understood code.
+description: Use before touching unfamiliar or high-stakes code - /blindspot, "what am I missing?", or changing auth/billing/migration code you didn't write.
 ---
 
 # Blindspot

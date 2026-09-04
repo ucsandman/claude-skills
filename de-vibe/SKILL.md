@@ -1,6 +1,6 @@
 ---
 name: de-vibe
-description: Audit and fix the tells that software was vibe-coded / AI-generated, then give it a small distinctive identity, so it ships looking handcrafted and professional. Use whenever the user says "de-vibe", "does this look AI-generated / vibe coded?", "make this look shippable / handcrafted / professional", "remove the AI slop", "polish before launch", asks why their site "looks like every other AI site", or is about to ship/demo/hand off a project that was built largely with AI assistance — even if they don't use the word "vibe". Pairs naturally before /ship.
+description: Audit and fix AI-generated tells, give the app a distinctive identity. Use for "de-vibe", "does this look AI-generated?", before /ship.
 ---
 
 # De-Vibe

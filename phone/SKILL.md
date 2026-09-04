@@ -1,17 +1,19 @@
 ---
 name: phone
-description: Use when the user asks to text or message someone from their iPhone, read or check something on their phone, or control their iPhone — e.g. "text my dad ...", "send this to Mom", "summarize this and text it to X", "what's on my phone", "open <app> on my phone", "organize my home screen", "what apps do I have installed".
+description: Use to text/message someone from the user's iPhone or control it - e.g. "text my dad", "what's on my phone", "open <app> on my phone".
 ---
 
-# Drive the user's iPhone (phone-claude)
+# Drive the user's iPhone (SideTap)
 
 The user's real iPhone is connected to this PC over USB and fully controllable.
-Harness lives at `C:\Projects\phone-claude`. Works from any project directory.
+Replace `/path/to/sidetap` below with the SideTap folder — a git clone, or
+`%LOCALAPPDATA%\SideTap\app` when it was installed with the sidetap.io
+one-liner. Driving the phone works from any project directory.
 
 ## Run
 
 ```bash
-cd C:/Projects/phone-claude && ./phone-harness.cmd <<'PY'
+cd /path/to/sidetap && ./phone-harness.cmd <<'PY'
 send_message("Mom", "hi")
 PY
 ```
@@ -28,6 +30,8 @@ none of which you can learn by looking at the screen.
 | Helper | Use |
 |---|---|
 | `send_message(contact, text)` | full Messages send; `contact` = conversation name in the Messages list |
+| `send_image(contact, image_path, text="")` | send a PNG/JPEG file from this PC as a Messages attachment, optional caption (clipboard paste; same approval gate) |
+| `save_clipboard_image(path)` | save the image copied on the phone to a PNG on this PC |
 | `read_messages(contact, limit=20)` | read a thread back: `[{text, from_me}, ...]`, oldest first |
 | `ocr()` | all visible text with center coords (real UI tree, exact). Elements are `{"text","x","y","type","rect"}` — the key is **`text`**, and `full=` is MCP-only |
 | `find_text(t)` / `tap_text(t)` | locate / tap by visible text |
@@ -35,8 +39,10 @@ none of which you can learn by looking at the screen.
 | `tap(x, y)` / `swipe(x1,y1,x2,y2,secs)` / `scroll("down")` | raw gestures, units = points |
 | `long_press(x, y, seconds=1.0)` | context menus and other hidden affordances |
 | `act([{"tool":n,"args":{...}}, ...])` | several tools in ONE round trip; screenshot excluded |
-| `type_text(t)` | type into the focused field (tap the field first) |
-| `open_app("messages")` | friendly name or bundle id |
+| `type_text(t)` | type into the focused field (tap the field first) — it **appends** at the cursor |
+| `set_field_text(field, text)` | replace a field's contents: pass the `ocr()` row for the field (it taps it for you), reads the value back. The only correct way to fill a field that may already hold text or an iOS draft |
+| `get_clipboard()` / `set_clipboard(t)` | read or write the iPhone system clipboard |
+| `open_app("messages", wait_seconds=0)` | friendly name or bundle id; `wait_seconds>0` confirms it reached the foreground and raises if it never did (the only foreground-confirmed launch that does not need the bundle id) |
 | `current_app()` / `wait_for_app(bundle_id)` | frontmost app / wait until one is |
 | `screenshot("out.png")` / `press_home()` / `wait_stable()` / `unlock()` | utilities |
 
@@ -66,11 +72,11 @@ none of which you can learn by looking at the screen.
   thread via Messages SEARCH (type the name, tap the Conversations result), and
   verify the opened thread's header before acting — a wrong or unverifiable
   match raises instead of guessing.
-- MCP alternative: the `sidetap` MCP server is registered at user scope on
-  this machine — new sessions get all helpers as native `mcp__sidetap__*`
-  tools (no Python piping). Prefer those tools when they are available.
+- MCP alternative: once the `sidetap` MCP server is registered (see the SideTap
+  README), sessions get all helpers as native `mcp__sidetap__*` tools — no
+  Python piping. Prefer those tools when they are available.
 - Anything fails to connect → `./phone-harness.cmd doctor` from the repo root.
   Never guess at connection problems. Common: free-Apple-ID signing expires every
   7 days → `phone-harness fix-input`, then the USER clicks Start in Sideloadly.
-- Phone must be unlocked for bring-up; `unlock()` types PHONE_PASSCODE from .env if set.
+- Phone must be unlocked for bring-up; `unlock()` enters PHONE_PASSCODE from .env if set (digit passcodes are typed in one fast request and verified by the pad leaving the screen; if a lock-screen notification holding keyboard focus eats the typed digits, they go in by tapping the pad's buttons instead). It raises if the screen stays dark after two wake attempts — that means the phone needs a hand wake (side button), not a retry loop.
 - Human-watchable live viewer: http://127.0.0.1:8770 (start with `python launch.py`).

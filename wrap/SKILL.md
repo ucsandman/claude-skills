@@ -1,6 +1,6 @@
 ---
 name: wrap
-description: Use when a session is ending — the user says "wrap up", "get to a good stopping point", is near a rate limit or context limit, wants to compact safely, or asks for handoff notes / a resume prompt.
+description: Use when a session is ending - "wrap up", near a rate/context limit, or wants handoff notes / a resume prompt.
 ---
 
 # Wrap

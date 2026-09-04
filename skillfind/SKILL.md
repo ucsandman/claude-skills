@@ -1,6 +1,6 @@
 ---
 name: skillfind
-description: Use before writing a new skill, before saying no skill exists for something, or whenever Wes asks "do I have a skill for X" / "is there a skill that…". Also use when a task sounds like it needs a capability that might already be installed (spreadsheets, PDFs, docx, scraping, copywriting, a framework, a provider) — most of this machine's skills are NOT in the session listing, so "I don't see one" is not evidence that none exists.
+description: Use before writing a new skill or saying no skill exists. Check "do I have a skill for X?" - most skills aren't in the session listing.
 ---
 
 # skillfind — most of your skills are invisible

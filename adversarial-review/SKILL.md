@@ -1,6 +1,6 @@
 ---
 name: adversarial-review
-description: Multi-agent adversarial code review — parallel read-only finders across focused dimensions, then every finding is independently verified by a skeptic that defaults to REFUTED. Use when the user asks for an adversarial review, a deep/thorough review of recent changes, "did the agents break anything", or a pre-merge audit of a large diff. Pass an optional scope as args (base ref, PR number, or paths); default scope is all uncommitted changes. Pass --fix to apply confirmed fixes after the report.
+description: Multi-agent adversarial code review - parallel finders, verified by a skeptic. Use for "adversarial review" or "did the agents break anything".
 ---
 
 # Adversarial Review
@@ -45,8 +45,20 @@ authz), `perf` (hot-path regressions, N+1, unbounded growth), `concurrency`.
 
 ## 3. Run the workflow
 
-Use the Workflow tool with this shape (adapt SCOPE/DIMENSIONS; keep the
-verification contract verbatim):
+The script below is saved as a named workflow at
+`~/.claude/workflows/adversarial-review.js`. Invoke it by name instead of
+regenerating it (a fresh script is 7-15k output tokens, 2-4 minutes of typing):
+
+```js
+Workflow({ name: 'adversarial-review', args: {
+  scope: '<repo, change-set description, per-area context>',
+  dimensions: [ /* optional [{key, prompt}]; defaults: correctness, silent-failures, integration, test-gaps */ ],
+  votes: 1, // 3 for very high stakes: three lenses per finding, majority vote
+} })
+```
+
+Reference shape (only paste inline if the named workflow is unavailable; keep
+the verification contract verbatim):
 
 ```js
 export const meta = {

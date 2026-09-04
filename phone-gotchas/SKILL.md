@@ -1,6 +1,6 @@
 ---
 name: phone-gotchas
-description: Use when driving the user's iPhone with sidetap or the phone-claude harness, before the first tap and whenever a tap lands on the wrong element, a scroll overshoots, an app search returns an unexpected action name, a capability seems missing, or a send is blocked.
+description: Use when driving the user's iPhone with sidetap, before the first tap or whenever a tap misses, a scroll overshoots, or a send is blocked.
 ---
 
 # Phone Gotchas
@@ -196,7 +196,7 @@ Lead with 1. Only reach for mass drags after the user has been told the cost.
 | Element sits at y < ~120 | The nav bar overlaps it. Scroll it to mid-screen, then tap. |
 | `tap_text("X")` on a screen already titled X | It taps the **NavigationBar title**, not the row you meant, and you end up somewhere unrelated. Filter to a `Cell`/`Button` with `y > 160` before tapping. |
 | Target is below the fold | Use `scroll_until_found("X")` — one call, and it refuses to stop on a hit hiding under the nav bar. |
-| Looking for a Home Screen icon | Use `find_on_home_screen("X")` — a plain read only sees the current page. It walks to page 1 first, so it sees the pages behind you too; budget ~7s per page swept, plus the walk back. |
+| Looking for a Home Screen icon | Use `find_on_home_screen("X")` — a plain read only sees the current page. It walks to page 1 first, so it sees the pages behind you too. Each page costs a bounded icon lookup (~0.4s), not a full read — only the page that matches pays the ~3s tree read — so budget ~0.4s per page swept plus one read at the end, plus the walk back. |
 | `scroll(amount=N)` | N is a **fraction of screen height**, default 0.4. 0.7 overshoots most lists. |
 | Tapped the right label, wrong thing happened | Several elements share text. `find_text()` returns all; pick the `Cell` or `Button`, not the `StaticText` inside it. |
 | Searched an app for an action by remembered name | Names drift. "Add New Reminder" is really "New Reminder". Search a broad substring, read what comes back. |
@@ -206,23 +206,10 @@ Lead with 1. Only reach for mass drags after the user has been told the cost.
 | `find_text()` empty for something you just saw | It only sees the **current** screen. Sweep Home Screen pages with a batched `act()` before concluding it is gone. |
 | Used "Add to Home Screen" | The icon lands in the first free slot, usually the **last** page, not page 1. |
 | Error wall containing `FBSOpenApplication... Locked` | The phone is locked. Make `unlock` step 1 of the batch. |
+| Tapping a lock-screen notification | **Impossible — do not retry.** The lock screen's tree is empty (no notification cells, so `find_text` is blind), a tap on the dark screen is swallowed without waking it, and the notification stack's own AX snapshot hangs every lit-screen gesture ~16s, which then lands after the screen re-slept — swallowed too (4/4 with a priority stack; a CLEAN lit lock screen taps in 0.5s, 2/2 — measured 2026-08-31). `unlock()` first, then open Notification Center (top-edge swipe) where the tree is real and taps are normal speed. |
 | A bottom-edge swipe does nothing | **Look for a keyboard first.** It owns the bottom ~40% of the screen, so a system edge gesture started at y≈950 begins *inside the keyboard* and is swallowed. Longer and slower does not help — the start point is wrong, not the shape. |
 | Stuck in Spotlight after a search | `press_home()` does **not** leave it (`/wda/homescreen` only exits real apps), and every bottom-edge gesture fails for the keyboard reason above. Tap the **empty blurred area** between the results and the search bar (mid-screen, ~y=477 on a 956pt screen) — one tap and you are on the springboard. Five gestures failed here before anyone took a screenshot. |
-| Typing a `- ` list into Notes | iOS converts the first `- ` into a native bullet list, so every later literal dash renders doubled. Skip the leading dashes or accept the cosmetics. |
-
-## Building a shortcut in the Shortcuts app
-
-Verified 2026-08-13, building a 6-action shortcut end to end by tap (weather +
-calendar + battery → Text with variable chips → Speak → Show) and running it.
-
-| Trap | Reality |
-|---|---|
-| Typing right after inserting a variable chip | **Chip insertion can silently drop keyboard focus**, and `type_text()` into nothing still reports ok — two lines went into the void with no error. The full `Select Variable` picker always defocused; the keyboard quick-bar chips defocused once and kept focus once, so neither is safe to chain blind. After every insert, re-read the field; re-focus by tapping past the end of the last line before typing on. Cycle: focus → type → chip → verify. |
-| Verifying the Text action's contents | Exception to the placeholder rule above: **the Text-action `TextView` exposes its real contents to `ocr()`**, chips included — each chip reads as `￼` (U+FFFC). Count the `￼`s to verify chip placement without paying for a screenshot. |
-| Waiting for the run-result sheet | **The result sheet (`Cancel`/`Done`) is invisible to the accessibility tree.** `wait_for_text("Done")` timed out while the sheet was plainly on screen, and the toolbar still read `Stop` — so a "stuck" run may be a finished run. `screenshot()` is the only way to see it, and the only source for its tap coordinates (pixels ÷ scale). |
-| Editing a parameter token inside an action row (`1 event`) | The whole row is ONE `Other` element in compacted `ocr()`; the tokens carry no coordinates and a guessed tap lands on nothing. Screenshot for geometry, tap the token, and a popup `Stepper` appears with `Increment`/`Decrement` buttons. Dismiss by tapping empty space below it. |
-| Searching actions by remembered name | Same name drift as everywhere: "Show Result" is **`Show Content`**; searching "battery level" returns **`Get Battery Status`**, which then renders in the editor as `Get Battery Level`. Search a substring, read what comes back. |
-| Hand-wiring inputs between actions | Don't. Auto-wire got everything right: Speak and Show both picked up the Text variable on their own, skipping the no-output action between them. Verify the wiring with one screenshot at the end instead of plumbing it by hand. |
+| Need to go back a screen inside an app | No `go_back()` helper exists. First try the measured edge swipe — `w,h = screen_info(); swipe(1, h/2, w*0.91, h/2, 0.6)` — the shape viewer.html's ← Back button ships, measured popping the screen every time from Settings > General (2026-08-12); a shorter or slower/faster edge swipe is swallowed in silence, so don't improvise the numbers. If the app disables interactive pop, tap the leftmost `Button` near the top-left from `ocr()` even when its label reads as nonsense ("33 unread") — geometry is the signal here, not text. Never do that tap on a **list screen**: the top-left button there is the profile button, and tapping it opens a menu instead of going back (bit live 2026-08-10). |
 
 ## What the harness cannot do
 
@@ -234,6 +221,17 @@ Verified against `src/phone_harness/` — not guesses:
 - **No biometrics.** Face ID and Touch ID prompts are a dead end.
 - **No real dictation.** You can tap the mic. Nobody speaks.
 - **`ui_tree()` is harness-only.** Not an MCP tool. Over MCP you get flat `ocr()`.
+- **Cannot tap lock-screen notifications.** The notification stack's own
+  accessibility snapshot hangs every gesture at the lit lock screen ~16s, which
+  fires after the screen re-sleeps, where iOS swallows it; the lock screen's
+  tree carries no notification elements at all (a clean lock screen taps fine —
+  the notification you want IS the hang). Unlock first — that is the fast path.
+- **Cannot drive a video feed that ignores accessibility.** TikTok's For You feed
+  is the proven case (measured 2026-08-17). Every WDA call that resolves the
+  frontmost app — every gesture, `ocr()`, `current_app()` — blocks forever there,
+  and WDA answers one request at a time, so ONE swipe stops the whole harness for
+  everyone. Do not retry it, and do not go looking for a faster gesture: the app
+  is not answering iOS, so there is nothing to tune. Say so and stay out.
 
 Missing capability? Check `helpers.py` and `mcp_server.py` `_TOOLS` before
 concluding it is impossible, and before building a workaround.
@@ -256,6 +254,13 @@ Its output is ordered by dependency, so **fix the first FAIL and ignore the
 rest** — they are downstream. "No iPhone found over USB" means the cable, and
 every check below it fails until the cable is back.
 
+**A 30s timeout is a different failure from a dropped link.** It usually means
+the app in front is holding WDA: the socket still accepts and nothing ever
+answers, so every later call queues behind it. The repair is not a restart —
+`./phone-harness.cmd up` detects that state and puts the Home Screen back in
+front, which releases WDA (~20s). Restarting instead fails with XCTest error
+103, which reads like an expired signature and is not one.
+
 WDA also drops transiently for a few seconds and recovers on its own. `act()`
 stops at the first failure and returns entries only for the steps it attempted,
 so re-read the screen before assuming the whole batch ran.
@@ -267,9 +272,14 @@ What that means in practice:
 - **Wrap reads *and* gestures in `retry()`** (above). Do not reach for
   `phone-harness up` on the first failure; `doctor` reported WDA FAIL and `up`
   answered `Already up: WDA is answering` moments later. It heals itself.
-- **`/source` can wedge while `/screenshot` still works** — screenshots go
-  through a separate sessionless client. If `ocr()` times out repeatedly but you
-  need to know where the phone is, screenshot it.
+- **`/source` can fail while `/screenshot` still works** — screenshots go
+  through a separate sessionless client, so they survive a dead SESSION. If
+  `ocr()` times out repeatedly but you need to know where the phone is,
+  screenshot it. This does NOT hold for a wedged WDA: WDA serves one request at
+  a time, so while a call is genuinely stuck everything queues behind it and
+  `/screenshot` and `/status` time out too (reproduced 4/4 on a second device,
+  issue #2). Silence from everything means wedged, and the only exit is
+  `ios launch com.apple.springboard`.
 - **Raise the Bash timeout for phone scripts.** The client's own 30s source
   timeout times a few retries blows straight through the default 2 minutes and
   you lose the run's output. Budget 300000.

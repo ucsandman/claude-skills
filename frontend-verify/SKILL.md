@@ -35,6 +35,11 @@ is always cheapest signal first:
 3. A snapshot written to disk, read back only for a route that already failed.
 4. A screenshot, only as a last resort.
 
+For a single page (a deployed URL, a marketing page, a page outside this repo's
+route list) step 2 is `curl -s <url> | grep -c <text>` for the words and
+`declick web tree <url> --selector <css> --limit 20` for the links, buttons and
+inputs as JSON: no snapshot, no screenshot.
+
 `verify-routes.mjs` runs steps 1 and 2 across all changed routes in one browser
 pass, writes the detail to disk, and prints a compact PASS / WARN / FAIL table.
 You read the table, then open detail files for flagged routes only. Do not read

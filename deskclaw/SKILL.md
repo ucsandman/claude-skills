@@ -1,6 +1,6 @@
 ---
 name: deskclaw
-description: Use when you need to see or inspect the Windows desktop — Wes asks "what's on my screen", pastes or offers a screenshot, mentions a native app, dialog, installer or window that is not a browser or a phone, or asks you to check/read/screenshot something outside a web page. Also use before claiming you cannot see the desktop, and whenever a task needs a window's contents, position, or a list of what is open.
+description: See or inspect the Windows desktop - "what's on my screen", a screenshot, a native app/dialog that isn't a browser or phone.
 ---
 
 # deskclaw — the read-only desktop eye
@@ -10,6 +10,10 @@ by hand; that is the workflow you are replacing. Reach for this instead of askin
 him what a window says.
 
 **Read-only.** There is no click, type, key or focus verb. Do not promise one.
+
+**Cheapest form first:** `declick desk windows`, `declick desk tree <title> --interactive --grep <re>`,
+`declick desk read <title> "<Type:Name>"` return JSON with `--fields`/`--limit`, work from any
+subagent, and cost a fraction of a screenshot. Take the screenshot only when the question is visual.
 
 `~/.claude/tools/deskclaw/` — spec at `~/.claude/docs/superpowers/specs/2026-08-12-deskclaw-design.md`.
 
@@ -110,13 +114,32 @@ its job it refuses rather than proceeding. A refusal is the tool working.
 pwsh -NoProfile -File "$HOME/.claude/tools/deskclaw/tests/run.ps1"
 ```
 
-Green is `75/75 passed`, exit 0. The count varies slightly because some assertions
-loop over however many denylisted windows are open — that is expected, not a
-regression. The suite launches and closes its own Calculator, and refuses to run
-while STOP is set.
+Green is all-passed (89 as of 2026-08-13), exit 0. The count varies slightly
+because some assertions loop over however many denylisted windows are open — that
+is expected, not a regression. The suite launches and closes its own Calculator,
+and refuses to run while STOP is set.
+
+## Stage 2: acting (built 2026-08-13)
+
+`desk click @eN`, `desk type @eN "text"`, `desk key <win> "{ENTER}"`,
+`desk focus <win>`. All refuse with exit 4 until armed: run `desk arm [minutes]`
+(auto-expires, default 30) at the start of an acting task and `desk disarm` when
+done. Elements re-resolve by RuntimeId against a fresh snapshot — if a click
+refuses with `element-gone`, re-run `desk snapshot` and use the new ref; never
+work around a refusal with SendKeys or coordinates.
+
+**DashClaw governance convention** (policies created 2026-08-13, verified firing):
+guard desktop acts with these exact action types — `desktop_click`,
+`desktop_type`, `desktop_focus`, `desktop_arm` (policy: warn — proceed, it lands
+in the ledger) and `desktop_key` (policy: require_approval — record
+pending_approval and wait; raw SendKeys chords are the one verb a human reviews).
+Name-based process kills guard as `process_kill_by_name` (require_approval);
+PID-based kills of processes you started need no approval. A freshly created
+policy can take a few seconds to reach every serverless instance — on a
+surprising `allow` right after policy changes, re-guard once.
 
 ## Not built
 
-Stage 2 (click, type, key, focus) and stage 3 (OCR for canvas apps) do not exist.
-If a task needs to ACT on a native window, say so plainly rather than improvising
-with `SendKeys` or coordinate clicking.
+Stage 3 (OCR for canvas apps: Unity, Blender) does not exist. Gated on proving
+`Windows.Media.Ocr` is reachable from PowerShell 7. Both named targets have
+headless code paths that beat clicking.

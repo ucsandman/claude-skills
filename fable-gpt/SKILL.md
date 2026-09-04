@@ -1,6 +1,6 @@
 ---
 name: fable-gpt
-description: Use when a task involves heavy implementation, debugging, test fixing, refactoring, or multi-file edits that Codex could execute, or when orchestrating Claude + Codex together in a session.
+description: Use for heavy implementation, debugging, test fixing, or multi-file edits Codex could execute, or orchestrating Claude + Codex.
 ---
 
 # Fable-GPT: Claude orchestrates, Codex executes
