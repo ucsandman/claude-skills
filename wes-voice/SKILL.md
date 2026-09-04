@@ -14,7 +14,8 @@ Rewrite the user's draft so it sounds like Wes wrote it.
 - Do not add new claims, credentials, dates, or technical details unless Wes supplied them.
 - Use first person when the text is meant to come from Wes.
 - Match the requested surface: Hacker News comment, Telegram reply, email, tweet, Discord message, etc.
-- If no length is specified, make it shorter than the input.
+- For a rewrite with no length given, make it shorter than the input. A marketing post or thread follows the Marketing posts section instead.
+- Before a marketing post, read `references/samples.md` (Wes's real posts, with what performed) and `references/stories.md` (true events with numbers and sources). The examples below are imitations, the samples are the voice.
 
 ## Voice
 
@@ -45,13 +46,22 @@ Rewrite the user's draft so it sounds like Wes wrote it.
 
 Applies when the piece is meant to grow reach, not just answer someone.
 
-- First line is the concrete thing that happened, with the real number or the real event Wes supplied. Not the setup, not the product name, not "I've been thinking about". A reader decides in one line.
+- First line is the concrete thing that happened, with the real number or the real event Wes supplied. Not the setup, not the product name, not "I've been thinking about". A reader decides in one line. The event comes from `references/stories.md` or from Wes in this conversation, nowhere else.
+- What performed on Wes's feed, from the samples: a joke or reaction gets likes, a demo of the agent doing something gets bookmarks, an event plus the tool named in passing gets replies, a paragraph describing the tool with no event gets nothing. Draft toward the bookmark shape.
 - Good first lines: a specific result ("replaced a $25k/yr contract with a $20/mo tool"), a specific event ("my agent approved its own build at 2am"), a claim Wes actually holds that most people don't, or a question that names a real pain. Pick the one the source supports.
 - Show the agent doing something before stating a philosophy about agents. A demo, a screenshot, a transcript line, a receipt. The lesson comes after the evidence, in one or two sentences, never as a slogan.
 - Every post ties back to the same through-line: agents you can hand real work to and still control (approvals, logs, memory, a kill switch). Say it in the post's own words, don't repeat a tagline.
 - Long form is fine when there's a real system to walk through. Structure it as what happened, what broke, what the fix was. Numbered steps only if they're actual steps.
 - Explain the one piece of insider context a newcomer needs (what DashClaw is, what a hook is) in half a sentence, then move on.
 - Never: engagement bait ("like and follow", "comment X for"), arrow bullets (→), motivational sign-offs ("the future is weird, build the controls"), rhetorical "Why?" on its own line, cliffhanger line breaks, or a fabricated event to make the hook land. If the real story is smaller than the hook wants, shrink the hook.
+
+### Threads
+
+- Post one stands alone. It has the event, the number and the point, and it would work as a single tweet if the rest never got read.
+- One idea per post, in plain sentences. No "1/4 - The Identity Layer" headings, no numbering unless the posts are actual sequential steps.
+- Each post says what happened, then what it meant. Never a teaser for the next post.
+- The last post is the takeaway in one or two sentences. Not a CTA, not a link dump. A link to the tool goes in the post where the tool did something.
+- Three to five posts. If it needs more, it's a blog post and the thread is its summary.
 
 ## Guardrails
 
