@@ -1,6 +1,6 @@
 ---
 name: wes-voice
-description: Use when Wes asks to rewrite or translate pasted text into his own casual voice, especially with "/wes", "make this sound like me", "make this sound like Wes", "translate this into my voice", or drafting comments, posts, replies, and messages he will personally send.
+description: REQUIRED before drafting anything Wes will post or send online (Reddit, X, HN, LinkedIn, Discord, email, DMs, comments on other repos) and when Wes wants pasted text rewritten in his own casual voice - "/wes", "make this sound like me". Invoke first, then draft; never hand Wes a first draft in another register.
 ---
 
 # Wes Voice
