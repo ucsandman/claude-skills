@@ -1,6 +1,6 @@
 ---
 name: wes-voice
-description: REQUIRED before drafting anything Wes will post or send online (Reddit, X, HN, LinkedIn, Discord, email, DMs, comments on other repos) and when Wes wants pasted text rewritten in his own casual voice - "/wes", "make this sound like me". Invoke first, then draft; never hand Wes a first draft in another register.
+description: "Required for anything Wes will post or send online; rewrite in his voice for /wes."
 ---
 
 # Wes Voice

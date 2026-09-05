@@ -1,6 +1,6 @@
 ---
 name: logo-reveal
-description: Use when the user wants a logo reveal / brand intro video for any product - e.g. "/logo-reveal" for DashClaw.
+description: "Create a logo reveal or brand intro video; /logo-reveal."
 ---
 
 # Logo Reveal

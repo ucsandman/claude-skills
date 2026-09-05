@@ -1,10 +1,10 @@
 # claude-skills
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-![Skills](https://img.shields.io/badge/skills-26-brightgreen)
+![Skills](https://img.shields.io/badge/skills-36-brightgreen)
 ![Platform](https://img.shields.io/badge/platform-Claude%20Code-orange)
 
-A working set of 26 [Claude Code](https://claude.com/claude-code) skills, used daily
+A working set of 36 [Claude Code](https://claude.com/claude-code) skills, used daily
 on real projects. Code review, shipping, marketing assets, device control, and agent
 orchestration.
 
@@ -92,7 +92,7 @@ To scope a skill to one project instead of your whole machine, put it in
 | Skill | What it does |
 |---|---|
 | `team` | Fans one task across two agents. Picks a lead, delegates bounded subtasks, logs every exchange to a ledger, and reports back. |
-| `meditate` | A nightly reflection loop. Observations have to earn their way up a ladder from note, to memory, to standing rule. Most nights promote nothing, which is the point. |
+| `meditate` | Tests lessons against later decisions. Workbench output is optional, and generated rules are changed at their source. |
 | `dashclaw-governance` | Governance protocol for a supervised agent. Risk thresholds, approval waits, and action recording. |
 
 ### Devices
@@ -101,9 +101,14 @@ To scope a skill to one project instead of your whole machine, put it in
 |---|---|
 | `phone` | Drives a real iPhone over USB. Send and read messages, open apps, tap, scroll, and OCR the screen. |
 | `phone-gotchas` | The coordinate traps and silent failures that iPhone automation hits. Required reading before the first tap. |
+| `iphone` | Generated command reference for the configured iPhone adapter. |
 | `deskclaw` | A read-only view of the Windows desktop. Lists windows, dumps a window's accessibility tree, and takes screenshots. |
 
 ### Personal
+
+Generated adapter references also include `moleresearch` for local data research
+and `petstore` for the sample Petstore API. These require their configured declick
+adapters. Skill descriptions were shortened to reduce discovery overhead.
 
 | Skill | What it does |
 |---|---|

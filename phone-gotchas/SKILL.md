@@ -1,6 +1,6 @@
 ---
 name: phone-gotchas
-description: Use when driving the user's iPhone with sidetap, before the first tap or whenever a tap misses, a scroll overshoots, or a send is blocked.
+description: "Apply sidetap iPhone guidance before tapping and when taps, scrolls, or sends fail."
 ---
 
 # Phone Gotchas

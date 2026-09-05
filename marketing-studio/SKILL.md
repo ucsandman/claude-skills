@@ -1,6 +1,6 @@
 ---
 name: marketing-studio
-description: Use when generating any brand video, animation, image, or audio asset. Background for /logo-reveal, /social-clip, /product-demo, /launch-video.
+description: "Shared production guidance for branded video, animation, image, and audio assets."
 ---
 
 # Marketing Studio

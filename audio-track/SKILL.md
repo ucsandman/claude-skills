@@ -1,6 +1,6 @@
 ---
 name: audio-track
-description: Use when the user wants music, voiceover, narration, or standalone audio - e.g. "/audio-track", "add music to the launch video".
+description: "Create music, voiceover, narration, or standalone audio; /audio-track."
 ---
 
 # Audio Track

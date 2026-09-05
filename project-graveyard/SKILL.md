@@ -1,9 +1,6 @@
 ---
 name: project-graveyard
-description: >-
-  Finds dead side projects on this machine, autopsies each from git history, and picks the one worth resurrecting.
-  Trigger on: abandoned or unfinished side projects, "what should I finish", revive or resurrect a project,
-  "run the graveyard", why don't I finish anything, starting a project that sounds like one already built.
+description: "Inspect abandoned local projects and git history to recommend which project to revive."
 license: Apache-2.0
 metadata:
   author: "Shubham Saboo"

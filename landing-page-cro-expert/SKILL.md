@@ -1,6 +1,6 @@
 ---
 name: landing-page-cro-expert
-description: Audits and rewrites landing/sales pages to increase conversion - headlines, hero copy, CTAs. Use when a page underperforms or converts poorly.
+description: "Improve landing-page conversion through headlines, hero copy, and calls to action."
 ---
 
 # Landing page CRO

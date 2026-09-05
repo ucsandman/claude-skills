@@ -1,16 +1,6 @@
 ---
 name: frontend-verify
-description: >
-  Verify frontend changes end to end after editing a web app, instead of
-  manually clicking through pages. Use this whenever you have changed UI code
-  and need to confirm nothing broke: "verify my frontend", "check the site
-  after these edits", "did my UI break", "did my changes break anything",
-  "make sure these routes still work", "smoke test the app", "check for console
-  errors", "validate the pages I touched". Works with Next.js (app and pages
-  router), React, Vite, and any local dev server. Built to be token cheap: it
-  reads console errors and failed network requests first and writes full page
-  state to disk, so it only pulls a snapshot or a screenshot into context when a
-  route actually fails. Use it before saying a frontend change is done.
+description: "Verify frontend routes, controls, rendering, console errors, and failed requests."
 ---
 
 # Frontend Verify

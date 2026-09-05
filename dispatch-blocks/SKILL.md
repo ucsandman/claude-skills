@@ -1,6 +1,6 @@
 ---
 name: dispatch-blocks
-description: Use when writing any subagent/Task/Workflow dispatch brief - provides proven verbatim brief blocks. Copy them in instead of re-deriving.
+description: "Use the established brief blocks when dispatching subagents or workflows."
 ---
 
 # Dispatch Blocks

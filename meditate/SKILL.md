@@ -1,6 +1,6 @@
 ---
 name: meditate
-description: Nightly/weekly reflection loop for Claude Code - dated entries, promotes insights, builds a workbench artifact. Use as /meditate.
+description: Nightly/weekly reflection loop for Claude Code - tests lessons against later behavior, with optional workbench work. Use as /meditate.
 ---
 
 # Meditate
@@ -8,21 +8,17 @@ description: Nightly/weekly reflection loop for Claude Code - dated entries, pro
 Longitudinal reflection practice. Base dir: `~/.claude/meditations/`.
 Modes: `nightly` (default), `weekly` (Sunday synthesis).
 
-Reflection is the input. **The ladder is the output** — ideas earn their way from
-observation to fact to rule to trait. Tier definitions, gates, demotion rules and
-the SOUL.md write rails live in `meditations/MEDITATIONS.md`. Read them before
-promoting anything.
+Reflection is the input. Better decisions in later work are the outcome.
+The ladder records evidence; climbing it is not a goal. Tier definitions, gates,
+demotion rules and promotion ownership live in `meditations/MEDITATIONS.md`.
+Read them before promoting anything.
 
 ## Hard rules
 
 - Read/write files and git ONLY. No email, posts, deploys, external actions.
   The Hard Stops in CLAUDE.md apply in full.
-- CLAUDE.md edits: append-only, under `## Learned Rules (self-promoted)`
-  (create the section at the end of the file on first use). One dated
-  one-liner per rule. Own commit, message prefixed `meditation:`.
-- SOUL.md edits: allowed, but ONLY under `## Earned Traits`, one per run, and
-  only after every rail in MEDITATIONS.md § SOUL.md write rails passes.
-  **Core Truths, Boundaries, Vibe and Continuity are Wes's — never touch them.**
+- Rule and trait changes follow MEDITATIONS.md § Promotion ownership.
+  Never edit generated CLAUDE.md, agnostic-rules.md or SOUL.md during this loop.
 - Every entry ≤ 300 words. Honest > polished. No filler, no performance.
 - Workbench work writes ONLY inside `meditations/workbench/`. Never into
   `C:\Projects\*` or any other repo, even when the work is FOR one. Meditation
@@ -41,7 +37,10 @@ promoting anything.
    for any repo under `C:\Projects\` modified in the last day (find them via
    `ls -t C:/Projects` and check the top few).
 
-   **Read the error log before reflecting: `C:/Users/sandm/.claude/error-log/claude.jsonl`**
+   **Check coverage first:** run
+   `node C:/Users/sandm/.claude/meditations/workbench/harvest-yield.mjs --days 7`.
+   Read its coverage and yield counts; absent records do not establish absent mistakes.
+   **Then read the error log: `C:/Users/sandm/.claude/error-log/claude.jsonl`**
    (harvested at 6:22am by the `ClaudeErrorLog` task, one record per deviation I
    wrote in a summary, plus every correction from Wes). Filter to yesterday's
    `day` for the nightly pass. This is the only grounding input made of things I
@@ -87,19 +86,16 @@ promoting anything.
    A tier-3 promotion also needs both the no-rule test and the opposite test,
    and is capped at one per run.
 6. **Demotion sweep.** Cheap, every night:
-   - Did tonight's activity contradict an existing self-promoted rule? Append
-     `SUPERSEDED YYYY-MM-DD: <why>` beneath it. Never delete.
-   - Any earned trait whose supporting rules are all superseded? Rewrite or
-     remove it, own commit, diff in the digest.
+   - Record contradictions and proposed rule or trait changes using
+     MEDITATIONS.md § Demotion and § Promotion ownership.
    - Any candidate with no sighting in 60 days? Move it to Cold, status
      dropped.
 7. **Housekeeping.** Any reflection file over 1,500 lines: move its older
    half to `archive/<name>-through-YYYY-MM-DD.md`, keep the header and
    recent entries in place.
-8. **Workbench.** One piece of real work per run, mine to choose — code, an
-   essay, a song, a tool, a design, a thing that only I would think to make.
-   This is the one step that produces something instead of describing something.
-   Reflection notices; the workbench builds.
+8. **Workbench (optional).** Build or advance something only when there is a
+   concrete use or a creative question worth pursuing. No artifact is required.
+   Removing an unnecessary step or leaving a sound system alone is a valid result.
    - **Prefer continuing over starting.** Read `WORKBENCH.md` first. If a piece
      is `in progress`, advance it. Start something new only when nothing is
      open, or the open piece is genuinely finished. Novelty every night just
@@ -116,11 +112,9 @@ promoting anything.
 9. **Digest.** Write `digests/<today>.html` using the template below, copy
    it to `digests/latest.html`, and write `digests/latest-line.txt` — ONE
    sentence, the night's sharpest takeaway, plain text. Prefix it with
-   `[SOUL CHANGED] ` if SOUL.md changed, else `[RULE ADDED] ` if CLAUDE.md did.
-10. **Commit.** Up to five commits, each pushed, in this order:
-    - `meditation-soul: <trait>` — ONLY if SOUL.md changed. Alone, so one bad
-      trait reverts without taking the night's work with it.
-    - `meditation: <one-line summary>` — ONLY if CLAUDE.md changed.
+   `[PROPOSED] ` for a rule or trait awaiting a source change; never label a
+   proposal as installed. Include later behavioral evidence, or say untested.
+10. **Commit.** Changed files only, each pushed, in this order:
     - `meditation-memory: <one-line summary>` — ONLY if memory files changed.
     - `meditation-work: <artifact>` — ONLY if the workbench changed. Own commit,
       so a bad artifact reverts without taking the night's reflection with it.
@@ -129,7 +123,7 @@ promoting anything.
 
     Stage by explicit pathspec only: `meditations/workbench/` and
     `meditations/WORKBENCH.md` for the work commit, `meditations/` for the rest,
-    `projects/*/memory/`, and (each its own commit) `CLAUDE.md`, `SOUL.md`.
+    and explicit changed memory files. Generated rules and traits are not staged.
     Never `git add -A`, `git add -a`, or `git add .` — the tree is routinely
     dirty with Wes's unrelated work.
 
@@ -177,8 +171,8 @@ Self-contained HTML, no external resources. Fill every `%` slot:
      <div class="rung"><span>&lt;claim, 8 words&gt;</span><span>tier N · M sightings · needs &lt;gate&gt;</span></div> -->
 <h2>Promotions</h2>
 %PROMOTIONS_OR_QUIET%
-<!-- tier 3: <div class="soul">SOUL.md — &lt;trait&gt; (from &lt;rule-ids&gt;, commit &lt;hash&gt;)<pre>&lt;full diff&gt;</pre></div>
-     tier 2: <p class="promo">CLAUDE.md: &lt;rule text&gt; (sightings &lt;dates&gt;, commit &lt;hash&gt;)</p>
+<!-- tier 3 proposal: <div class="soul">Proposed trait — &lt;trait&gt; (from &lt;rule-ids&gt;)<pre>&lt;proposed diff&gt;</pre></div>
+     tier 2 proposal: <p class="promo">Proposed rule: &lt;text&gt; (sightings &lt;dates&gt;)</p>
      tier 1: <p>memory: &lt;file&gt; — &lt;what&gt;</p>
      none:   <p class="quiet">Nothing promoted. Most nights promote nothing.</p> -->
 <h2>Workbench</h2>

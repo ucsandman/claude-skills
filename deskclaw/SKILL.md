@@ -1,6 +1,6 @@
 ---
 name: deskclaw
-description: See or inspect the Windows desktop - "what's on my screen", a screenshot, a native app/dialog that isn't a browser or phone.
+description: "Inspect the Windows desktop, screenshots, native apps, and dialogs."
 ---
 
 # deskclaw — the read-only desktop eye

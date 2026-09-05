@@ -1,6 +1,6 @@
 ---
 name: ship
-description: Use when finished work needs to go out - "ship it", "commit and push", or "anything else we need to update?" before a release.
+description: "Verify and release finished work when asked to ship, commit, or push."
 ---
 
 # Ship

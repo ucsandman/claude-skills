@@ -1,6 +1,6 @@
 ---
 name: launch
-description: Take a project end-to-end through launch - domain, hosting, payments, copy, distribution. Trigger "launch <project>" or "/launch <dir>".
+description: "Launch a project across hosting, domain, payments, copy, and distribution; /launch."
 ---
 
 # /launch — full launch orchestration

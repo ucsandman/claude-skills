@@ -1,6 +1,6 @@
 ---
 name: treg
-description: External/live data - 2,600+ endpoints across 60+ providers - SEO, backlinks, social, enrichment, ads, Analytics. Search by task, call it.
+description: "Find and call live-data APIs for SEO, social, enrichment, ads, and analytics through Treg."
 ---
 
 # treg — the tool catalog for your agent

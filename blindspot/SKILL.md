@@ -1,6 +1,6 @@
 ---
 name: blindspot
-description: Use before touching unfamiliar or high-stakes code - /blindspot, "what am I missing?", or changing auth/billing/migration code you didn't write.
+description: "Inspect unfamiliar or high-stakes code before edits, including auth, billing, and migrations."
 ---
 
 # Blindspot

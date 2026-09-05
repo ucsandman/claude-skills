@@ -1,6 +1,6 @@
 ---
 name: phone
-description: Use to text/message someone from the user's iPhone or control it - e.g. "text my dad", "what's on my phone", "open <app> on my phone".
+description: "Control the user's iPhone, including apps and messaging."
 ---
 
 # Drive the user's iPhone (SideTap)

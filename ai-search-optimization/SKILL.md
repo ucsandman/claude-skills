@@ -1,6 +1,6 @@
 ---
 name: ai-search-optimization
-description: Optimizes for AI assistants and AI-generated answers - being retrievable, cited, and represented accurately as traffic shifts to AI answers.
+description: "Improve retrieval, citations, and accurate representation in AI search answers."
 ---
 
 # AI search optimization

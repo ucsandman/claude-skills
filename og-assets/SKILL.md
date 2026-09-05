@@ -1,6 +1,6 @@
 ---
 name: og-assets
-description: Use when the user wants OG images, link-preview assets, or README GIFs for any product - e.g. "/og-assets".
+description: "Create Open Graph images, link-preview assets, and README GIFs; /og-assets."
 ---
 
 # OG Assets

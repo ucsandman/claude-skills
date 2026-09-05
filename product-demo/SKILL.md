@@ -1,6 +1,6 @@
 ---
 name: product-demo
-description: Use when the user wants a product demo video with zooms and cursor - e.g. "/product-demo", "Screen-Studio style demo".
+description: "Create product demo videos with cursor movement and zooms; /product-demo."
 ---
 
 # Product Demo

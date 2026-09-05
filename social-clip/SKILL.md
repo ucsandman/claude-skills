@@ -1,6 +1,6 @@
 ---
 name: social-clip
-description: Use when the user wants a short social video / feature announcement clip - e.g. "/social-clip", "make a clip announcing X".
+description: "Create short social videos and feature announcements; /social-clip."
 ---
 
 # Social Clip

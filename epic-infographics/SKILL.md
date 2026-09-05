@@ -1,6 +1,6 @@
 ---
 name: epic-infographics
-description: Create polished infographic images or animated MP4/GIF from data or a topic. Use for "infographic" or "turn this data into an image".
+description: "Create infographic images or animated MP4/GIF infographics from data or a topic."
 license: MIT
 ---
 

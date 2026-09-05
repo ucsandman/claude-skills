@@ -1,6 +1,6 @@
 ---
 name: de-vibe
-description: Audit and fix AI-generated tells, give the app a distinctive identity. Use for "de-vibe", "does this look AI-generated?", before /ship.
+description: "Remove AI-generated design tells and give an interface a distinct identity; /de-vibe."
 ---
 
 # De-Vibe

@@ -1,9 +1,6 @@
 ---
 name: dashclaw-governance
-description: >
-  Governance protocol for agents governed by DashClaw (guard, record, approvals, session lifecycle).
-  Trigger on: governed agent, dashclaw governance, guard policy, approval wait,
-  governed capability, risk threshold, action recording, session lifecycle.
+description: "Apply DashClaw governance: guard decisions, approvals, action recording, and agent session lifecycle."
 ---
 
 # DashClaw Governance Protocol

@@ -1,6 +1,6 @@
 ---
 name: launch-video
-description: Use when the user wants a full launch/hero video with product UI, logo, copy, narration, music - e.g. "/launch-video".
+description: "Create a full product launch video with UI, branding, narration, and music."
 ---
 
 # Launch Video

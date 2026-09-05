@@ -1,6 +1,6 @@
 ---
 name: wrap
-description: Use when a session is ending - "wrap up", near a rate/context limit, or wants handoff notes / a resume prompt.
+description: "Write session handoff notes and a resume prompt when wrapping up."
 ---
 
 # Wrap

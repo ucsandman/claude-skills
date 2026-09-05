@@ -1,6 +1,6 @@
 ---
 name: preflight
-description: Use before a product goes public for its final pass - "final pass", "preflight", "launch check", "is this ready to go live".
+description: "Run a product's final prelaunch readiness check; /preflight."
 user-invocable: true
 argument-hint: "[optional focus: env | design | verify]"
 ---

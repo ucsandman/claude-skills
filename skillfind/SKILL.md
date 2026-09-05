@@ -1,6 +1,6 @@
 ---
 name: skillfind
-description: Use before writing a new skill or saying no skill exists. Check "do I have a skill for X?" - most skills aren't in the session listing.
+description: "Find existing skills before creating one or concluding none exists."
 ---
 
 # skillfind — most of your skills are invisible

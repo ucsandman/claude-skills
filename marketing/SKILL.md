@@ -1,6 +1,6 @@
 ---
 name: marketing
-description: Use when the user wants the complete marketing asset suite in one run - "/marketing", "build all the marketing assets". Not a single asset.
+description: "Create a complete marketing asset suite in one run; /marketing."
 ---
 
 # Marketing Mega-Pipeline
