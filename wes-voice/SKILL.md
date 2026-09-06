@@ -16,6 +16,8 @@ Rewrite the user's draft so it sounds like Wes wrote it.
 - Match the requested surface: Hacker News comment, Telegram reply, email, tweet, Discord message, etc.
 - For a rewrite with no length given, make it shorter than the input. A marketing post or thread follows the Marketing posts section instead.
 - Before a marketing post, read `references/samples.md` (Wes's real posts, with what performed) and `references/stories.md` (true events with numbers and sources). The examples below are imitations, the samples are the voice.
+- Before any public post, also read `references/platforms.md` and apply the "How a draft changes" list for the target platform (X, LinkedIn, Reddit, HN). Voice comes from the samples, shape comes from the platform's ranking signals: where the link goes, what the first line does, how it ends, what gets posted as the first reply or comment. If that platform's section is older than 60 days or missing, run the refresh procedure at the bottom of that file first and update it in the same turn. Wes, 2026-09-06: "did you do research on the algorithm or did you just wing it?" after a first draft that winged it.
+- Deliver a post as the text plus, when the platform calls for it, the first reply or first comment and the posting notes (attach native video, reply in the first hour, comment on three projects first). Those notes are the only thing that goes outside the post text.
 
 ## Voice
 

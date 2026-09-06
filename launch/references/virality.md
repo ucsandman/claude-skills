@@ -19,6 +19,7 @@ Common failure modes: no emotional charge; interchangeable-with-a-thousand-other
 - Distribution is decided in the first 30-60 minutes; visibility halves roughly every 6 hours. Reply to every early comment within 2-3 hours to keep the conversation signal firing.
 - Native media wins: attached image ≈ 150% more reposts than text-only; native video > linked video. Threads: Buffer's experiment found +63% impressions vs single link-tweets — use threads for depth, single posts for speed.
 - X Premium accounts get a structural 2-4x reach multiplier.
+- **Superseded 2026-09-06.** X open-sourced the Phoenix ranker with weights on 2026-08-13: copy-link share about 40 likes, reply/quote/DM share about 10, follow about 16, repost about 4, and no hard-coded link penalty in the code. The "links cut reach 50-90%" line above is unverified now. Current per-platform draft rules live in `~/.claude/skills/wes-voice/references/platforms.md`; that file is the one to refresh.
 
 ## LinkedIn
 
