@@ -42,6 +42,18 @@ How a draft changes:
 - Ask for what's missing, not for upvotes or signups.
 - Wes comments on three other projects before posting and answers every comment.
 
+## Reaching a non-technical buyer (trades, local service, "normies"; researched 2026-09-06)
+
+Use this when the product's real buyer is not on X/LinkedIn/HN/builder-Reddit: a trades owner, a local service business, anyone who has the problem and the money but never reads a launch thread. Sources: r/b2bmarketing 2026-05-26, r/DigitalMarketing, mrtask.com 2026-06-21, OneUp self-promo DB 2026-07-13. Basis: @thekitze 2026-09-06, "normies are clueless and would gladly pay; indiehackers are hard to sell to."
+
+Where they are, ranked: local trade Facebook groups and regional associations (highest trust); Google Business Profile and Nextdoor for local search; r/smallbusiness software/systems threads (the one general sub where an owner evaluating tools is on-topic); direct local outreach. Not the trade pro subs, which ban outside posts (r/HVAC routes outsiders to r/hvacadvice, homeowner Q&A only), and not builder subs for selling.
+
+How a draft changes:
+- Sell relief, not tech. "The call got answered and the quote went out while you were on the job" beats "AI back office". Say it the way the owner would say it on the phone.
+- On r/smallbusiness or a trades group, lead with the shop's problem and ask for their reality. A feedback post ("is the missed call your biggest leak, or is it X?") is on-topic; a launch pitch gets removed. No link in the post, demo link in a comment only if asked.
+- 58% of subs ban self-promo or gate it 9:1 (OneUp DB). Check the exact sub's sidebar before posting and comment in the community first.
+- The highest-conversion move is usually not a broadcast post at all: a helpful comment in an existing "what software do you use" thread, or direct outreach with a demo link, beats any launch.
+
 ## Hacker News (from the launch skill's virality notes, 2026-07; not refreshed)
 
 "Show HN:" prefix, link straight to the product or repo, plain specific title without superlatives. Structure: who you are, one sentence what, the problem, origin, the technical part, what's different, ask for feedback. The comments are the launch, answer everything fast and technically. Never solicit votes. Timing matters less than response speed.
