@@ -29,6 +29,8 @@ How a draft changes:
 - No link in the body. Name the product in plain words and put the URL in the first comment, posted immediately.
 - End on a question a specific reader can answer with a sentence, not a yes.
 - Wes replies to every comment in the first hour with substance.
+- For a complex idea, lead with one clean infographic that turns it into a single visual. In the source playbook this was the single biggest reach lever (a 4K to 300K impressions jump in 6 months, reposted by execs and AI consultants). Use the epic-infographics / marketing-studio assets, not a text wall, when the point is a concept. (added 2026-09-07, source: r/AI_Agents laid-off-growth-marketer playbook, 1w9rja4.)
+- Discovery is comment-led, not just reply-led. Commenting 4 to 5 substantive times a day on the ICP's own posts pulls them to Wes's profile faster than posting alone does. Do this the week before and during a launch, not only on replies to Wes's posts. (added 2026-09-07, same source.)
 
 ## Reddit, r/SideProject and similar builder subs (researched 2026-09-06)
 
