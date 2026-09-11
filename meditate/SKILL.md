@@ -57,6 +57,10 @@ Read them before promoting anything.
    pair — POSIX path plus suppressed stderr — reported "0 commits in 24h" across
    six repos that had 27. A grounding step that cannot fail loudly will ground you
    in nothing.
+   **Check memory tiers: `node C:/Users/sandm/.claude/tools/memory-lint/memory-lint.mjs --root C:/Users/sandm/.claude/projects/C--Users-sandm--claude/memory --no-diff`.**
+   A FAIL means the store broke a tier rule between commits (MEMORY.md over 200 lines
+   or 15,000 chars, a working note over its cap, a dead index path). Fix it before
+   reflecting; the counts beside each verdict say how much was checked.
    **Check memory provenance: `node C:/Users/sandm/.claude/tools/memstale/memstale.cjs --mark`.**
    Every path a memory names is checked against the disk; a memory naming a
    missing path gets a `stale-since:` frontmatter line (cleared when the path
