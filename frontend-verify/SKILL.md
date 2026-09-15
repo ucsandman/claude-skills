@@ -1,6 +1,16 @@
 ---
 name: frontend-verify
-description: "Verify frontend routes, controls, rendering, console errors, and failed requests."
+description: >
+  Verify frontend changes end to end after editing a web app, instead of
+  manually clicking through pages. Use this whenever you have changed UI code
+  and need to confirm nothing broke: "verify my frontend", "check the site
+  after these edits", "did my UI break", "did my changes break anything",
+  "make sure these routes still work", "smoke test the app", "check for console
+  errors", "validate the pages I touched". Works with Next.js (app and pages
+  router), React, Vite, and any local dev server. Built to be token cheap: it
+  reads console errors and failed network requests first and writes full page
+  state to disk, so it only pulls a snapshot or a screenshot into context when a
+  route actually fails. Use it before saying a frontend change is done.
 ---
 
 # Frontend Verify
@@ -24,11 +34,6 @@ is always cheapest signal first:
    not "give me the whole DOM".
 3. A snapshot written to disk, read back only for a route that already failed.
 4. A screenshot, only as a last resort.
-
-For a single page (a deployed URL, a marketing page, a page outside this repo's
-route list) step 2 is `curl -s <url> | grep -c <text>` for the words and
-`declick web tree <url> --selector <css> --limit 20` for the links, buttons and
-inputs as JSON: no snapshot, no screenshot.
 
 `verify-routes.mjs` runs steps 1 and 2 across all changed routes in one browser
 pass, writes the detail to disk, and prints a compact PASS / WARN / FAIL table.

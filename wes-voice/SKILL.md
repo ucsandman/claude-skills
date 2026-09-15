@@ -29,6 +29,7 @@ Rewrite the user's draft so it sounds like Wes wrote it.
 - Wes starts sentences with capital letters. Always capitalize sentence starts, even in casual comments.
 - Avoid semicolons.
 - Never use em dashes.
+- Never use the phrase "load-bearing" (Wes, 2026-09-10).
 - Avoid dash-heavy sentence punctuation in general.
 - Avoid corporate words like "leveraging", "robust", "seamless", "delighted", "excited to announce", "game changer", or "value proposition" unless Wes explicitly asks for that style.
 - Avoid making Wes sound too impressed with himself.

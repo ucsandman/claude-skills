@@ -15,7 +15,7 @@ How a draft changes:
 - The link can stay in the body. Put the build detail (stack, counts, how it works) in a first reply posted right after, which is also the reply the author has already engaged with.
 - Nothing that could read as ragebait, hype or a category the reader would mark "not interested". One predicted "not interested" erases 170 likes.
 - Native video or image always, never a link to a video. A clip under the duration threshold earns no video weight, so use the full social cut, not a 5 second loop.
-- Hashtags only on launch and demo posts, one or two, matching Wes's own habit.
+- No hashtags. Post-Phoenix the ranker categorizes by reading the post text semantically; hashtags add zero reach and independent breakdowns rate them neutral-to-negative, with hashtag-heavy posts pattern-matching spam accounts (Postory 2026-09-01, Teract 2026-07, X-Autopilot 2026-09-02, refreshed 2026-09-10). Their only use is on-platform search, which Wes's audience doesn't arrive by. Write the topic words into the sentence instead.
 
 ## LinkedIn (researched 2026-09-06)
 
@@ -56,9 +56,19 @@ How a draft changes:
 - 58% of subs ban self-promo or gate it 9:1 (OneUp DB). Check the exact sub's sidebar before posting and comment in the community first.
 - The highest-conversion move is usually not a broadcast post at all: a helpful comment in an existing "what software do you use" thread, or direct outreach with a demo link, beats any launch.
 
-## Hacker News (from the launch skill's virality notes, 2026-07; not refreshed)
+## Hacker News (researched 2026-09-14)
 
-"Show HN:" prefix, link straight to the product or repo, plain specific title without superlatives. Structure: who you are, one sentence what, the problem, origin, the technical part, what's different, ask for feedback. The comments are the launch, answer everything fast and technically. Never solicit votes. Timing matters less than response speed.
+Sources: HN's own Show HN guidelines (news.ycombinator.com/showhn.html) as quoted by Favors.dev 2026-08-03; daily.dev Ads 2026-06-03; Flowjam 2026-06-22.
+
+What gets through. A Show HN is only for "things people can run on their computers or hold in their hands". A blog post, a waitlist, a landing page with no product behind it, a newsletter or a point release gets flagged. Two conditions catch people out: the project has to be yours, and you have to be present to discuss it. The guidelines also ask you to lower the barrier as far as it goes, which is why the email wall is the most complained-about thing in Show HN threads. The non-trivial rule is the one that aged hardest in the AI era: readers apply it before they finish the title, so the post has to say how and why it was built, personally. Front page needs roughly 30 to 50 upvotes in the first hour (daily.dev 2026-06), and there is no way to buy position, no scheduling and no hunter.
+
+How a draft changes:
+- Title is boring and specific, with a digit, a version or a time box. "Show HN: I cut my AWS bill 82% with a 200-line Lambda" beats "How I saved money on AWS" (Flowjam 2026-06). No superlatives, no adjectives, nothing that reads like an ad.
+- The link goes straight to the thing a reader can run, not to a marketing page.
+- The first comment is the real launch post, written before posting: who Wes is, one sentence of what it does, the problem, why he built it, the technical part, what is different, then the ask for feedback.
+- Name the ugly thing yourself in the first comment. An unsigned binary, a missing platform, a known false positive: HN finds it in ten minutes, and stating it first reads as honesty while omitting it reads as hiding.
+- No email wall, no sign-up gate between the link and the working product.
+- Answer every comment fast and technically, in the first hour. Response speed matters more than post time. Never ask for votes, anywhere, including other channels.
 
 ## Refresh procedure
 
