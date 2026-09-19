@@ -40,6 +40,14 @@ Read them before promoting anything.
    **Check coverage first:** run
    `node C:/Users/sandm/.claude/meditations/workbench/harvest-yield.mjs --days 7`.
    Read its coverage and yield counts; absent records do not establish absent mistakes.
+   **Context usage, weekly (Sundays) or any night the ledger passes 10 sessions:** run
+   `node C:/Users/sandm/.claude/meditations/workbench/context-usage.mjs --days 14`.
+   Its three lists are ladder input: `promote` (a module loaded in most sessions is
+   behaving like standing text: widen the pointer in the rules or narrow its trigger,
+   read the prompts in `logs/context-graph.jsonl` to tell which), `split` (rejected over
+   budget more than loaded: set `context.section` or split the file), `dead` (never
+   loaded, no dependents: give it a trigger or archive it). It prints the rows and
+   sessions it saw; under 5 sessions the lists are noise, say so and move on.
    **Then read the error log: `C:/Users/sandm/.claude/error-log/claude.jsonl`**
    (harvested at 6:22am by the `ClaudeErrorLog` task, one record per deviation I
    wrote in a summary, plus every correction from Wes). Filter to yesterday's
